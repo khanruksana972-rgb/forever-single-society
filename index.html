@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Forever Single Society 💘</title>
+
+<style>
+.question {
+  white-space: normal;
+  word-wrap: break-word;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ffd6e0, #fcbad3);
+  text-align: center;
+  color: #4a4a4a;
+  overflow-x: hidden;
+}
+
+h1 { margin-top: 25px; }
+
+.card {
+  background: rgba(255,255,255,0.95);
+  margin: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+button {
+  background: #ff4d88;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 20px;
+  margin: 8px;
+  cursor: pointer;
+}
+
+button:hover { background: #e6005c; }
+
+input {
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  width: 85%;
+  max-width: 320px;
+  z-index: 1000;
+}
+
+#noBtn {
+  position: absolute;
+}
+
+.heart {
+  position: fixed;
+  bottom: -10px;
+  font-size: 20px;
+  animation: floatUp 6s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes floatUp {
+  0% {transform: translateY(0);}
+  100% {transform: translateY(-100vh);}
+}
+</style>
+</head>
+
+<body>
+
+<h1>💘 The Forever Single Society 💘</h1>
+
+<!-- Friend 1 -->
+<div class="card">
+<h2>Swetu💕</h2>
+
+<p class="question">
+Tumhara office ka bestfriend 😂?
+</p>
+
+<input type="text" id="code1" placeholder="Type your answer here">
+<br>
+<button onclick="checkCode1()">Unlock 💖</button>
+</div>
+
+<!-- Friend 2 -->
+<div class="card">
+<h2>✨Nu</h2>
+
+<p class="question">
+Apun ka nickname jab apun raat ko online aata hai?
+</p>
+
+<input type="text" id="code2" placeholder="Type your answer here">
+<br>
+<button onclick="checkCode2()">Unlock 💖</button>
+</div>
+
+<!-- Galentine -->
+<div class="card">
+<h2>💘 Galentine Proposal</h2>
+<button onclick="openGalentine()">Start</button>
+</div>
+
+<!-- Husband Application -->
+<div class="card">
+<h2>💍 Future Husband Application</h2>
+<button onclick="openForm()">Apply Here</button>
+</div>
+
+<!-- Love Letter Popup -->
+<div id="letterPopup" class="popup">
+<p id="letterText"></p>
+<button onclick="closePopup()">Close 💕</button>
+</div>
+
+<!-- Galentine Popup -->
+<div id="galPopup" class="popup">
+<h3>Will you be my Galentine? 💕</h3>
+<button onclick="sayYes()">Awww, say YES 💖 bestie, iske alawa koi chaara nai hai.</button>
+<button id="noBtn" onmouseover="moveNo()"> (agar marna hai mere hathon toh) No😌</button>
+</div>
+
+<!-- Husband Form Popup -->
+<div id="formPopup" class="popup">
+<h3>Future Husband Application 💍</h3>
+<p>1. Kitna Ameer chalega?</p>
+<input type="text">
+<p>2. Height and age requirement darling??</p>
+<input type="text">
+<p>3. Kya kya skills chaiye jaise - Cooking, jhadu, pocha etc.?</p>
+<input type="text">
+<br>
+<button onclick="rejectHusband()">Submit</button>
+</div>
+
+<script>
+
+/* Friend 1 */
+function checkCode1(){
+  let answer = document.getElementById("code1").value.trim().toLowerCase();
+
+  if(answer === "manager"){  
+    openLetter("Tum pagal hai. Certified. Verified.\n\nAgar overthinking pe tax lagta toh tum bankrupt hota. Tumse milke laga ki life thora chatpata v hona chahiye but itna ho jayega ye nai pata tha (thanks for all the office gossips and tea's babe!)\n\nBut honestly jab tum Kolkata gaya lgta tha ki tumse baat band ho jayega but look at us now 😂 ham un logo v janta hai jinko ham dekha tak nai… distance never made you distant mere jigar ke tukde 🥺.\n\nIf I ever feel lost, I know exactly who I’d call 🤧.");
+  } else {
+    alert("Access denied. Only real besties allowed.");
+  }
+}
+
+/* Friend 2 */
+function checkCode2(){
+  let answer = document.getElementById("code2").value.trim().toLowerCase();
+
+  if(answer === "vut"){  
+    openLetter("Aye haye, boyfriend ya krishna nahi hai life me toh kya hua, me to hu na 😎. Krishna ko bhul jao mere yaar aur koi behtar ladka patao. Haa agar wo ameer nai hua na toh mene hi breakup karwa dena hai tumlogo ka 😌 paisa matters babe!\n\nBut koi mile ya na mile yaad rakhna me hu, hamesha... always on your side lekin iska matlab ye nahi ki tum murder hi kardo aur mujhe phone karo 🙂.\n\nBaaki yaad karte rehna wese v bht dur rehti ho tum 🤧… but some friendships don’t reduce with distance.\n\nYou’re permanent.");
+  } else {
+    alert("seriously bro??");
+  }
+}
+
+function openLetter(message){
+  const intro = [
+    "Rishton ke bhi password hote hain… aur tumhe yaad tha."
+  ];
+
+  const randomIntro = intro[Math.floor(Math.random()*intro.length)];
+
+  document.getElementById("letterText").innerText =
+    randomIntro + "\n\n" + message;
+
+  document.getElementById("letterPopup").style.display = "block";
+}
+
+function closePopup(){
+  document.getElementById("letterPopup").style.display = "none";
+  document.getElementById("galPopup").style.display = "none";
+  document.getElementById("formPopup").style.display = "none";
+}
+
+/* Galentine Chaos */
+function openGalentine(){
+  document.getElementById("galPopup").style.display = "block";
+}
+
+function moveNo(){
+  const btn = document.getElementById("noBtn");
+  btn.style.top = Math.random()*200 + "px";
+  btn.style.left = Math.random()*200 + "px";
+  alert([
+    "Aaj mout chuna hai tumne?",
+    "No kya click kar raha hai, dimaag kharab hai?",
+    "Brother ewww.....eww brotha",
+    "System error: Rejection not supported."
+  ][Math.floor(Math.random()*4)]);
+}
+
+function sayYes(){
+  closePopup();
+  launchConfetti();
+  openLetter("You are officially locked in as my forever Galentine.\n\nNo escape. No refund. Only a friend for a lifetime.");
+}
+
+/* Husband Application */
+function openForm(){
+  document.getElementById("formPopup").style.display = "block";
+}
+
+function rejectHusband(){
+  alert("Application rejected. Standards too high. Try next lifetime.");
+  closePopup();
+}
+
+/* Confetti */
+function launchConfetti(){
+  for(let i=0; i<120; i++){
+    let confetti = document.createElement("div");
+    confetti.style.position = "fixed";
+    confetti.style.width = "8px";
+    confetti.style.height = "8px";
+    confetti.style.backgroundColor =
+      ["#ff4d88","#ffd166","#06d6a0","#118ab2","#ef476f"][Math.floor(Math.random()*5)];
+    confetti.style.left = Math.random()*100 + "vw";
+    confetti.style.top = "-10px";
+    confetti.style.borderRadius = "50%";
+    document.body.appendChild(confetti);
+
+    let fall = setInterval(()=>{
+      confetti.style.top = parseFloat(confetti.style.top)+5+"px";
+      if(parseFloat(confetti.style.top) > window.innerHeight){
+        clearInterval(fall);
+        confetti.remove();
+      }
+    },20);
+  }
+}
+
+/* Floating Hearts */
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💕";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+  document.body.appendChild(heart);
+  setTimeout(() => { heart.remove(); }, 6000);
+}, 800);
+
+</script>
+
+</body>
+</html>
